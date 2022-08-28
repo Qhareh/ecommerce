@@ -3,79 +3,20 @@
 {% block content %}
 
 <div class="row mt-5">
+    {% for product in products %}
     <div class="col-md-4 ">
         <div class="card border-0 shadow-lg ">
             <div class="card-body">
                 <img src="{%static 'images/headphone2.png'%}" class="w-75 ">
-                <h6><strong>Product</strong></h6>
+                <h6><strong>{{product.name}}</strong></h6>
                 <hr>
                 <button class="btn btn-outline-secondary ">Add to Cart</button>
                 <a class="btn btn-outline-success" href="#">View</a>
-                <h4 class="d-inline-block ms-5"><strong>$20</strong></h4>
+                <h4 class="d-inline-block ms-5"><strong>${{product.price|floatformat:2}}</strong></h4>
             </div>
         </div>
     </div>
-    <div class="col-md-4 ">
-        <div class="card border-0 shadow-lg ">
-            <div class="card-body">
-                <img src="{%static 'images/headset1.png'%}" class="w-75 ">
-                <h6><strong>Product</strong></h6>
-                <hr>
-                <button class="btn btn-outline-secondary ">Add to Cart</button>
-                <a class="btn btn-outline-success" href="#">View</a>
-                <h4 class="d-inline-block ms-5"><strong>$20</strong></h4>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 ">
-        <div class="card border-0 shadow-lg ">
-            <div class="card-body">
-                <img src="{%static 'images/headphone.png'%}" class="w-75 ">
-                <h6><strong>Product</strong></h6>
-                <hr>
-                <button class="btn btn-outline-secondary ">Add to Cart</button>
-                <a class="btn btn-outline-success" href="#">View</a>
-                <h4 class="d-inline-block ms-5"><strong>$20</strong></h4>
-            </div>
-        </div>
-    </div>
+    {% endfor %}
 </div>
-<div class="row mt-5">
-    <div class="col-md-4 ">
-        <div class="card border-0 shadow-lg ">
-            <div class="card-body">
-                <img src="{%static 'images/headphone2.png'%}" class="w-75 ">
-                <h6><strong>Product</strong></h6>
-                <hr>
-                <button class="btn btn-outline-secondary ">Add to Cart</button>
-                <a class="btn btn-outline-success" href="#">View</a>
-                <h4 class="d-inline-block ms-5"><strong>$20</strong></h4>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 ">
-        <div class="card border-0 shadow-lg ">
-            <div class="card-body">
-                <img src="{%static 'images/headset1.png'%}" class="w-75 ">
-                <h6><strong>Product</strong></h6>
-                <hr>
-                <button class="btn btn-outline-secondary ">Add to Cart</button>
-                <a class="btn btn-outline-success" href="#">View</a>
-                <h4 class="d-inline-block ms-5"><strong>$20</strong></h4>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4 ">
-        <div class="card border-0 shadow-lg ">
-            <div class="card-body">
-                <img src="{%static 'images/headphone.png'%}" class="w-75 ">
-                <h6><strong>Product</strong></h6>
-                <hr>
-                <button class="btn btn-outline-secondary ">Add to Cart</button>
-                <a class="btn btn-outline-success" href="#">View</a>
-                <h4 class="d-inline-block ms-5"><strong>$20</strong></h4>
-            </div>
-        </div>
-    </div>
-</div>
+
 {% endblock content %}
