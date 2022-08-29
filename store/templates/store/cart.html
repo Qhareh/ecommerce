@@ -11,10 +11,10 @@
         <table class="table">
             <tr>
                 <th>
-                    <h5>Items: <strong>3</strong></h5>
+                    <h5>Items: <strong>{{order.get_cart_items}}</strong></h5>
                 </th>
                 <th>
-                    <h5>Total:<strong> $42</strong></h5>
+                    <h5>Total:<strong>${{order.get_cart_total|floatformat:2}}</strong></h5>
                 </th>
                 <th>
                     <a style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
@@ -43,7 +43,7 @@
             <input type="number" name="quantity" value="{{item.quantity}}" id="quantity" class="w-25">
         </div>
         <div class="col-lg-2 mt-4">
-            <p>$40</p>
+            <p>${{item.get_total}}</p>
         </div>
     </div>
 
