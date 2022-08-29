@@ -23,6 +23,14 @@ class Product (models.Model):
     def str(self):
         return self.name
 
+    @property
+    def imageURL(self):
+        try:
+             url = self.image.url
+        except:
+            url = ''
+        return url
+
 class Order (models.Model):
     customer = models.ForeignKey(Customer, on_delete= models.SET_NULL, null=True, blank=True) 
     complete = models.BooleanField(default=False)
