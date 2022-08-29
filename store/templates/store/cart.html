@@ -29,11 +29,25 @@
     <div class="col-lg-2"><strong>Price</strong></div>
     <div class="col-lg-2"><strong>Quantity</strong></div>
     <div class="col-lg-2"><strong>Total</strong></div>
-    <div class="col-lg-4"><img src="{%static 'images/headphone.png'%}" class="w-25 img-fluid"></div>
-    <div class="col-lg-2 mt-4"><p>Product1</p></div>
-    <div class="col-lg-2 mt-4"><p>$20</p></div>
-    <div class="col-lg-2 mt-4"><p>2</p></div>
-    <div class="col-lg-2 mt-4"><p>$40</p></div>
+
+    {% for item in items %}
+    <div class="row">
+        <div class="col-lg-4"><img src="{{item.product.imageURL}}" class="w-25 img-fluid"></div>
+        <div class="col-lg-2 mt-4">
+            <p>{{item.product.name}}</p>
+        </div>
+        <div class="col-lg-2 mt-4">
+            <p>{{item.product.price|floatformat:2}}</p>
+        </div>
+        <div class="col-lg-2 mt-4">
+            <input type="number" name="quantity" value="{{item.quantity}}" id="quantity" class="w-25">
+        </div>
+        <div class="col-lg-2 mt-4">
+            <p>$40</p>
+        </div>
+    </div>
+
+    {% endfor %}
 </div>
 
 {% endblock content %}
