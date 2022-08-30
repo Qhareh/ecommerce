@@ -5,8 +5,21 @@ import json
 # Create your views here.
 
 def store(request):
+	if request.user.is_authenticated:
+		# 	customer = request.user.customer
+		customer = Customer.objects.filter(id = request.user.id).first()
+		order, created = Order.objects.get_or_create(customer=customer, complete= False)
+		items = order.orderitem_set.all()
+		cartItems = order.get_cart_items
+	else:
+
+		# crete empty cart for now for nonlogged in users
+		items = []
+		order = {'get_cart_total':0, 'get_cart_items':0}
+		cartItems = order['get_cart_items']
+
 	products = Product.objects.all()
-	context = {'products': products}
+	context = {'products': products, 'cartItems':cartItems}
 	return render(request, 'store/store.html', context)
 
 def cart(request):
@@ -16,12 +29,14 @@ def cart(request):
 		customer = Customer.objects.filter(id = request.user.id).first()
 		order, created = Order.objects.get_or_create(customer=customer, complete= False)
 		items = order.orderitem_set.all()
+		cartItems = order.get_cart_items
 	else:
 		
 		items = []
 		order = {'get_cart_total':0, 'get_cart_items':0}
+		cartItems = order['get_cart_items']
 
-	context = {'items': items, 'order':order}
+	context = {'items': items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'store/cart.html', context)
 
 def checkout(request):
@@ -30,14 +45,15 @@ def checkout(request):
 		customer = Customer.objects.filter(id = request.user.id).first()
 		order, created = Order.objects.get_or_create(customer=customer, complete= False)
 		items = order.orderitem_set.all()
-
+		cartItems = order.get_cart_items
 	else:
 
 		# crete empty cart for now for nonlogged in users
 		items = []
 		order = {'get_cart_total':0, 'get_cart_items':0}
+		cartItems = order['get_cart_items']
 
-	context = {'items': items, 'order':order}
+	context = {'items': items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'store/checkout.html', context)
 
 def updateItem(request):

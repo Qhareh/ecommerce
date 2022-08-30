@@ -51,9 +51,9 @@
                     <a href="#" class="btn btn-warning mx-2">Login</a>
                 </li>
                 <li>
-                    <a class="mx-2" href="{% url 'cart' %}">
+                    <a class="mx-2 text-decoration-none" href="{% url 'cart' %}">
                         <i class="fa fa-shopping-cart fa-2x text-danger" aria-hidden="true"></i>
-                        <span class="bg-danger text-light">0</span>
+                        <sup class="bg-danger text-light fw-bold">{{cartItems}}</sup>
                     </a>
 
                 </li>
