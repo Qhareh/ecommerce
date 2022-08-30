@@ -10,7 +10,7 @@
                 <img src="{{product.imageURL}}" class="w-75 ">
                 <h6><strong>{{product.name}}</strong></h6>
                 <hr>
-                <button class="btn btn-outline-secondary ">Add to Cart</button>
+                <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary update-cart">Add to Cart</button>
                 <a class="btn btn-outline-success" href="#">View</a>
                 <h4 class="d-inline-block ms-5"><strong>${{product.price|floatformat:2}}</strong></h4>
             </div>

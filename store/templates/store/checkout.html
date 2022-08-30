@@ -36,18 +36,18 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-5 mt-4">
+    <div class="col-lg-5 ">
         <div class="card border-0 shadow-lg">
             <div class="card-body ">
                 <a href="{% url 'cart' %}" class="btn btn-outline-dark"><i class="fa fa-long-arrow-left"
                         aria-hidden="true"></i>
                     &nbsp;&nbsp; Back to Cart</a>
-                <h4 class="mt-4 ">Order Summary </h4>
+                <h4 class="mt-2 ">Order Summary </h4>
                 {% for item in items %}
-                <div class="row d-flex mt-3">
+                <div class="row d-flex">
                     <hr>
                     <div style="flex: 2;">
-                        <img src="{{item.product.imageURL}}" class="img-fluid w-50">
+                        <img src="{{item.product.imageURL}}" class="img-fluid w-25">
                     </div>
                     <div style="flex: 1;"><p>{{item.product.name}}</p></div>
                     <div style="flex: 1;"><p>${{item.product.price|floatformat:2}}</p></div>
