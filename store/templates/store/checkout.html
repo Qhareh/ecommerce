@@ -3,11 +3,11 @@
 {% block content %}
 <div class="row d-flex justify-content-center mt-5 mx-5 mb-5 ">
     <div class="col-lg-6">
-        <div class="card border-0 shadow-lg">
+        <div class="card border-0 shadow-lg" id="form-wrapper">
             <div class="card-body">
                 <form class="mt-2" id="form">
                     {% csrf_token %}
-                    <div class="row">
+                    <div class="row d-flex" id="user-info">
                         <div class="col-lg-6 mb-4">
                             <input class="form-control" placeholder="Your Name" name="name" type="name" required />
                         </div>
@@ -38,9 +38,9 @@
                 </form>
             </div>
         </div>
-        <div class="card border-0 shadow-lg mt-2" id="payment-info">
+        <div class="card border-0 shadow-lg mt-2 d-none" id="payment-info">
             <p class="mx-2 mt-2">Paypal options</p>
-            <button class="btn btn-sm btn-info mb-2 mx-2 text-light fw-bold">Make payment</button>
+            <button class="btn btn-sm btn-info mb-2 mx-2 text-light fw-bold" id="make-payment">Make payment</button>
         </div>
     </div>
     <div class="col-lg-5 ">
@@ -80,12 +80,29 @@
             document.getElementById('shipping-info').innerHTML = ''
         }
 
+        if (user != 'AnonymousUser') {
+            document.getElementById('user-info').innerHTML = ''
+        }
+        if (shipping == 'false' && user != 'AnonymousUser') {
+            //Hide entire form if user is logged in and shipping is false 
+            document.getElementById('form-wrapper').classList.add('d-none');
+            //Show payment if logged in user wants to buy an item that does not require shipping
+            document.getElementByid('payment-info').classList.remove('d-none');
+        }
+
         var form = document.getElementById('form')
-        form.addEventListener('submit', function (e) {
+            form.addEventListener('submit', function (e) {
             e.preventDefault()
             console.log('Form submitted....')
             document.getElementById('form-btn').classList.add("d-none");
             document.getElementById('payment-info').classList.remove('d-none');
         })
+
+        document.getElementById('make-payment').addEventListener('click', function (e) {
+            submitFormData()
+        })
+        function submitFormData() {
+            console.log('payment button clicked')
+        }
     </script>
     {% endblock content %}
