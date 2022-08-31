@@ -5,7 +5,7 @@
     <div class="col-lg-6">
         <div class="card border-0 shadow-lg">
             <div class="card-body">
-                <form class="mt-2" id="shippingForm">
+                <form class="mt-2" id="form">
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-lg-6 mb-4">
@@ -32,11 +32,15 @@
                         </div>
 
                     </div>
-                    <div class="mb-4 ">
-                        <button type="submit" class="btn btn-sm btn-success w-100">Continue</button>
+                    <div class="mb-2 ">
+                        <button type="submit" class="btn btn-sm btn-success w-100" id="form-btn">Continue</button>
                     </div>
                 </form>
             </div>
+        </div>
+        <div class="card border-0 shadow-lg mt-2" id="payment-info">
+            <p class="mx-2 mt-2">Paypal options</p>
+            <button class="btn btn-sm btn-info mb-2 mx-2 text-light fw-bold">Make payment</button>
         </div>
     </div>
     <div class="col-lg-5 ">
@@ -75,5 +79,13 @@
         if (shipping == 'False') {
             document.getElementById('shipping-info').innerHTML = ''
         }
+
+        var form = document.getElementById('form')
+        form.addEventListener('submit', function (e) {
+            e.preventDefault()
+            console.log('Form submitted....')
+            document.getElementById('form-btn').classList.add("d-none");
+            document.getElementById('payment-info').classList.remove('d-none');
+        })
     </script>
     {% endblock content %}
