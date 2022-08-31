@@ -31,7 +31,7 @@
     <div class="col-lg-2"><strong>Total</strong></div>
 
     {% for item in items %}
-    <div class="row">
+    <div class="row d-flex">
         <div class="col-lg-4"><img src="{{item.product.imageURL}}" class="img-fluid w-25"></div>
         <div class="col-lg-2 mt-4">
             <p>{{item.product.name}}</p>
@@ -40,7 +40,22 @@
             <p>{{item.product.price|floatformat:2}}</p>
         </div>
         <div class="col-lg-2 mt-4">
-            <input type="number" name="quantity" value="{{item.quantity}}" id="quantity" class="w-25">
+            <div class="row ms-3">
+                <div class="col-lg-1 mt-2">
+                    <p>{{item.quantity}}</p>
+                </div>
+                <div class="col-lg-1  m-0">
+                    <p class="m-0 pt-0 update-cart" data-product="{{item.product.id}}" data-action="add"><i class="fa fa-sort-asc" aria-hidden="true" ></i></p> 
+                    <p class="m-0 pt-0 update-cart" data-product="{{item.product.id}}" data-action="remove"><i class="fa fa-sort-desc " aria-hidden="true"></i></p>
+                </div>
+            </div>
+             
+            
+
+            <!-- <img class="img-fluid" src="{% static  'images/arrow-up.png' %}">
+            <img class="img-fluid" src="{% static  'images/arrow-down.png' %}"> -->
+            <!-- <input type="number" name="quantity" value="{{item.quantity}}" id="quantity" class="w-25 update-cart" -->
+            <!-- data-product="{{item.product.id}}" data-action="add"> -->
         </div>
         <div class="col-lg-2 mt-4">
             <p>${{item.get_total}}</p>
