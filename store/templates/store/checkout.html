@@ -28,7 +28,7 @@
                             <input class="form-control" placeholder="State" name="state" type="state" required />
                         </div>
                         <div class=" col-lg-6 mb-4">
-                            <input class="form-control" placeholder="Zip code" name="code" type="code" required />
+                            <input class="form-control" placeholder="Zip code" name="zipcode" type="code" required />
                         </div>
 
                     </div>
@@ -75,7 +75,7 @@
     </div>
     <script type="text/javascript">
         var shipping = '{{order.shipping}}'
-        var total = '{{order.get_cart_total|floatformat:2}}'
+        var total = '{{order.get_cart_total}}'
         if (shipping == 'False') {
             document.getElementById('shipping-info').innerHTML = ''
         }
