@@ -15,10 +15,14 @@ def store(request):
 		cartItems = order.get_cart_items
 	else:
 
-		# crete empty cart for now for nonlogged in users
-		items = []
-		order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
-		cartItems = order['get_cart_items']
+		# # crete empty cart for now for nonlogged in users
+		# items = []
+		# order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
+		# cartItems = order['get_cart_items']
+		cookieData = cookieCart(request)
+		cartItems = cookieData['cartItems']
+		order = cookieData['order']
+		items = cookieData['items']
 
 	products = Product.objects.all()
 	context = {'products': products, 'cartItems':cartItems}
@@ -50,11 +54,10 @@ def checkout(request):
 		items = order.orderitem_set.all()
 		cartItems = order.get_cart_items
 	else:
-
-		# crete empty cart for now for nonlogged in users
-		items = []
-		order = {'get_cart_total':0, 'get_cart_items':0, 'shipping':False}
-		cartItems = order['get_cart_items']
+		cookieData = cookieCart(request)
+		cartItems = cookieData['cartItems']
+		order = cookieData['order']
+		items = cookieData['items']
 
 	context = {'items': items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'store/checkout.html', context)
